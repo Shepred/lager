@@ -18,6 +18,7 @@ Route::post('/position/create', 'PosController@store');
 
 Route::get('/position/edit', 'PosController@edit');
 Route::post('/position/update', 'PosController@update');
+Route::get('/position/destroy/{position}', 'PosController@destroy');
 
 
 Route::post('/sku/search', 'SKUController@show');

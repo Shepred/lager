@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use DB;
 use Carbon;
 
@@ -129,8 +130,14 @@ class PosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($position)
     {
-        //
+        DB::table('positions')->where('name', $position)->update([
+            'sku' => null,
+            'updated_at' => Carbon\Carbon::now(),
+        ]);
+
+        flash("Varen på position {$position} er nu udleveret.")->success();
+        return redirect('/');
     }
 }
